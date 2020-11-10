@@ -1,0 +1,62 @@
+image: docker:latest
+services:
+  - docker:dind
+
+variables:
+  SPRING_PROFILES_ACTIVE: homol
+  DOCKER_DRIVER: overlay
+
+stages:
+  - verificar:pre:deploy
+  - clear_cache
+  - build
+  - package
+  - deploy
+  - verificar:pos:deploy
+
+pre_deploy:
+  stage: verificar:pre:deploy
+  only:
+    - master 
+  script:
+    - export TZ=$(readlink /etc/localtime | sed 's#/var/db/timezone/zoneinfo/##')
+    - docker container stop hacka-safra || true
+    - docker container rm hacka-safra || true
+
+pos_deploy:
+  stage: verificar:pos:deploy
+  only:
+    - master 
+  when: on_success
+  script:
+    - docker run -d --memory="700m" --name hacka-safra --net=host registry.gitlab.com/bomnapraca/hacka-safra
+
+clear_cache:
+  stage: clear_cache
+  only:
+    - master 
+  cache:
+    paths:
+      - target/
+  script:
+    - rm -rf target/
+
+cache:
+  paths:
+    - target/*.jar
+
+maven-build:
+  image: maven:3-jdk-8
+  stage: build
+  only:
+    - master
+  script: "mvn clean install"
+ 
+docker-build:
+  stage: package
+  only:
+    - master 
+  script:
+  - docker build -t registry.gitlab.com/bomnapraca/hacka-safra .
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+  - docker push registry.gitlab.com/bomnapraca/hacka-safra

@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active:
+    - dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hackafiap
+    username: postgres
+    password: flavio041421
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+  flyway:
+    schemas:
+    - hacka
+    url: jdbc:postgresql://localhost:5432/hackafiap
+    user: postgres
+    password: flavio041421
+server:
+  port: 8081
