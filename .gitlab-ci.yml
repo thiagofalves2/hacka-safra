@@ -3,7 +3,7 @@ services:
   - docker:dind
 
 variables:
-  SPRING_PROFILES_ACTIVE: homol
+  SPRING_PROFILES_ACTIVE: dev
   DOCKER_DRIVER: overlay
 
 stages:
