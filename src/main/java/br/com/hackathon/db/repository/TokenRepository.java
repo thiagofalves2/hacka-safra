@@ -6,6 +6,6 @@ import br.com.hackathon.db.entity.Token;
 
 public interface TokenRepository  extends CrudRepository<Token, Long> {
 	
-	public Token findByIdUserAndToken(Long idUser, String token);
+	public Token findByCardHolderAndToken(Long idUser, String token);
 
 }

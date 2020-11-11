@@ -15,8 +15,8 @@ public class Token implements Serializable {
 	private static final long serialVersionUID = 7858079313080207118L;
 	
 	@Id
-	@Column(name = "iduser")
-	private Long idUser;
+	@Column(name = "cardholder")
+	private Long cardHolder;
 	
 	@Column(name = "dt_send")
 	private Date dtSend;
@@ -29,14 +29,6 @@ public class Token implements Serializable {
 	
 	public Token() {
 		
-	}
-
-	public Long getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
 	}
 
 	public Date getDtSend() {
@@ -62,7 +54,12 @@ public class Token implements Serializable {
 	public void setDtValidated(Date dtValidated) {
 		this.dtValidated = dtValidated;
 	}
-	
-	
-	
+
+	public Long getCardHolder() {
+		return cardHolder;
+	}
+
+	public void setCardHolder(Long cardHolder) {
+		this.cardHolder = cardHolder;
+	}	
 }

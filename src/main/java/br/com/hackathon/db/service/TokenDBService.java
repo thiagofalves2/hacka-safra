@@ -17,8 +17,8 @@ public class TokenDBService {
 	private TokenRepository tokenRepository;
 	
 	
-	public void validateToken(Long idUser, String strToken) throws TokenNotFoundException, TokenUsedException {
-		Token token = tokenRepository.findByIdUserAndToken(idUser, strToken); 
+	public void validateToken(Long CardHolder, String strToken) throws TokenNotFoundException, TokenUsedException {
+		Token token = tokenRepository.findByCardHolderAndToken(CardHolder, strToken); 
 		if(token == null) {
 			throw new TokenNotFoundException("Token not found");
 		}
@@ -31,10 +31,10 @@ public class TokenDBService {
 		tokenRepository.save(token);
 	}
 	
-	public void save(Long idUser, String strToken) {
+	public void save(Long cardHolder, String strToken) {
 		Token token = new Token();
 		token.setDtSend(new Date());
-		token.setIdUser(idUser);
+		token.setCardHolder(cardHolder);
 		token.setToken(strToken);
 		tokenRepository.save(token);
 	}

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 
-import br.com.hackathon.db.entity.User;
+import br.com.hackathon.db.entity.CardHolder;
 import br.com.hackathon.db.service.TokenDBService;
-import br.com.hackathon.db.service.UserDBService;
+import br.com.hackathon.db.service.CardHolderDBService;
 import br.com.hackathon.exceptions.UserBlockException;
 import br.com.hackathon.exceptions.UserNotFoundException;
 import br.com.hackathon.sms.dto.DeliverySMSResponseDTO;
@@ -29,7 +29,7 @@ public class SMSService {
 	private static Long CODIGO_PAIS = 55L;
 
 	@Autowired
-	private UserDBService userDBService;
+	private CardHolderDBService userDBService;
 	
 	@Autowired
 	private TokenDBService tokenDBService;
@@ -38,7 +38,7 @@ public class SMSService {
 	private DeliveryClientService deliveryClientService;
 
 	public DeliverySMSResponseDTO sendSMS(String document) throws UserNotFoundException, JsonProcessingException, UserBlockException {
-		User user = userDBService.getByDocument(document);
+		CardHolder user = userDBService.getByDocument(document);
 		String token = String.valueOf(HashUtil.getRandomNumberInRange(1000, 9999));
 		String jsonSMS = sendSMS(user, token);
 		ZenviaResponseSMS response = deliveryClientService.enviarSMS(jsonSMS);
@@ -46,11 +46,11 @@ public class SMSService {
 		return response.getSendSmsResponse();
 	}
 	
-	private void saveToken(User user, String strToken) {
+	private void saveToken(CardHolder user, String strToken) {
 		tokenDBService.save(user.getId(), strToken);
 	}
 
-	private String sendSMS(User user, String token) {
+	private String sendSMS(CardHolder user, String token) {
 		ZenviaRequestAbstract t = new ZenviaRequestAbstract();
 		ZenviaSMSRequestDTO req = new ZenviaSMSRequestDTO();
 		req.setCallbackOption(CALLBACK_OPTION);

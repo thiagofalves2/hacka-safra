@@ -2,10 +2,10 @@ package br.com.hackathon.db.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import br.com.hackathon.db.entity.User;
+import br.com.hackathon.db.entity.CardHolder;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<CardHolder, Long> {
 	
-	User findByDocument(String document);
+	CardHolder findByDocument(String document);
 	
 }

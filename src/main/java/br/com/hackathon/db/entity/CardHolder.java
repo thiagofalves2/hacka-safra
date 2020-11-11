@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(schema = "hacka", name = "tb_user")
-public class User implements Serializable {
+@Table(schema = "hacka", name = "tb_cardholder")
+public class CardHolder implements Serializable {
 
 	private static final long serialVersionUID = -8461438447432026518L;
 	
@@ -32,6 +32,9 @@ public class User implements Serializable {
 	@Column(name = "ds_document")
 	private String document;
 	
+	@Column(name = "tp_document")
+	private Integer typeDocument;
+	
 	@Column(name = "nu_cel_phone")
 	private String celPhone;
 	
@@ -41,7 +44,7 @@ public class User implements Serializable {
 	@Column(name = "dt_block")
 	private Date dtBlock;
 	
-	public User() {
+	public CardHolder() {
 		
 	}
 
@@ -100,7 +103,13 @@ public class User implements Serializable {
 	public void setDtBlock(Date dtBlock) {
 		this.dtBlock = dtBlock;
 	}
-	
-	
+
+	public Integer getTypeDocument() {
+		return typeDocument;
+	}
+
+	public void setTypeDocument(Integer typeDocument) {
+		this.typeDocument = typeDocument;
+	}
 
 }
