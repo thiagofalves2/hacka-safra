@@ -1,0 +1,2 @@
+ALTER TABLE hacka.tb_authorization ADD CONSTRAINT tb_authorization_fk FOREIGN KEY (id) REFERENCES hacka.tb_card(id);
+ALTER TABLE hacka.tb_authorization ADD CONSTRAINT tb_authorization_fk_1 FOREIGN KEY (cardholder) REFERENCES hacka.tb_cardholder(id);

@@ -1,0 +1,1 @@
+ALTER TABLE hacka.tb_token ADD CONSTRAINT tb_token_fk FOREIGN KEY (cardholder) REFERENCES hacka.tb_cardholder(id);
