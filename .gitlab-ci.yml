@@ -29,7 +29,7 @@ pos_deploy:
     - master 
   when: on_success
   script:
-    - docker run -d --memory="700m" --name hacka-safra --net=host registry.gitlab.com/hacka-safra
+    - docker run -d --memory="700m" --name hacka-safra --net=host registry.gitlab.com/flavionbc/hacka-safra
 
 clear_cache:
   stage: clear_cache
@@ -57,6 +57,6 @@ docker-build:
   only:
     - master 
   script:
-  - docker build -t registry.gitlab.com/hacka-safra .
+  - docker build -t registry.gitlab.com/flavionbc/hacka-safra .
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-  - docker push registry.gitlab.com/hacka-safra
+  - docker push registry.gitlab.com/flavionbc/hacka-safra
