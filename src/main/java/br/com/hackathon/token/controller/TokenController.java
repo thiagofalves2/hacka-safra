@@ -19,13 +19,13 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value = "/token")
-@Api(value = "TOKEN", description = "API validacao de TOKEN")
+@Api(value = "TOKEN", description = "API TOKEN")
 public class TokenController {
 
 	@Autowired
 	private TokenService tokenService;
 	
-	@ApiOperation(value = "Validar Token")
+	@ApiOperation(value = "Method to validate the token sent SMS")
 	@PostMapping("/{document}/{token}")
 	public ResponseEntity<TokenDTO> sendTokenBySMS(@PathVariable("document") String document, @PathVariable("token") String token) {
 		TokenDTO tokenDTO = new TokenDTO();

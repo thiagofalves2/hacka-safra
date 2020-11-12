@@ -1,0 +1,1 @@
+ALTER TABLE hacka.tb_authorization ADD dt_effective_settlement date NULL;

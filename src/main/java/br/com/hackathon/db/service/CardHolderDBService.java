@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.hackathon.db.entity.CardHolder;
-import br.com.hackathon.db.repository.UserRepository;
+import br.com.hackathon.db.repository.CardHolderRepository;
 import br.com.hackathon.exceptions.UserBlockException;
 import br.com.hackathon.exceptions.UserNotFoundException;
 
@@ -12,7 +12,7 @@ import br.com.hackathon.exceptions.UserNotFoundException;
 public class CardHolderDBService {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private CardHolderRepository userRepository;
 	
 	public void save(CardHolder user) {
 		userRepository.save(user);

@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(schema = "hacka", name = "tb_cardholder")
 public class CardHolder implements Serializable {

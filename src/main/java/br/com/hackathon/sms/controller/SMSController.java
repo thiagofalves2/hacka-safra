@@ -19,13 +19,13 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value = "/sms")
-@Api(value = "SMS", description = "API envio de SMS")
+@Api(value = "SMS", description = "API SMS")
 public class SMSController {
 	
 	@Autowired
 	private SMSService smsService;
 	
-	@ApiOperation(value = "Enviar token por SMS")
+	@ApiOperation(value = "Send SMS authentication token")
 	@PostMapping("/{document}")
 	public ResponseEntity<DeliverySMSResponseDTO> sendTokenBySMS(@PathVariable("document") String document) {
 		DeliverySMSResponseDTO resp = new DeliverySMSResponseDTO();
