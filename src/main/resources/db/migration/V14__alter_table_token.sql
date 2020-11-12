@@ -1,1 +1,0 @@
-ALTER TABLE hacka.tb_token RENAME COLUMN iduser TO cardholder;
