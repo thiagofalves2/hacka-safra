@@ -14,7 +14,7 @@ public interface AuthorizationRepository extends CrudRepository<Authorization, L
 	@Query(value = 	"select sum(amount)\n" + 
 			        " from hacka.tb_authorization ta ," + 
 			        " hacka.tb_cardholder tc" + 
-			        " where ta.cardholder = 1" + 
+			        " where ta.cardholder = tc.id " + 
 			        "    and tc.ds_document = :document" + 
 			        "    and ta.date = :dtTransaction", nativeQuery = true)
 	public BigDecimal howMuchSell(@Param("document") String document, @Param("dtTransaction") Date dtTransaction);
@@ -23,7 +23,7 @@ public interface AuthorizationRepository extends CrudRepository<Authorization, L
 	@Query(value = 	"select sum(amount)\n" + 
 	        " from hacka.tb_authorization ta ," + 
 	        " hacka.tb_cardholder tc" + 
-	        " where ta.cardholder = 1" + 
+	        " where ta.cardholder = tc.id " + 
 	        "    and tc.ds_document = :document" + 
 	        "    and ta.dt_effective_settlement = :dtSettlement", nativeQuery = true)
 	public BigDecimal howMuchReceived(@Param("document") String document, @Param("dtSettlement") Date dtSettlement);
@@ -31,7 +31,7 @@ public interface AuthorizationRepository extends CrudRepository<Authorization, L
 	@Query(value = 	"select sum(amount)\n" + 
 	        " from hacka.tb_authorization ta ," + 
 	        " hacka.tb_cardholder tc" + 
-	        " where ta.cardholder = 1" + 
+	        " where ta.cardholder = tc.id " + 
 	        "    and tc.ds_document = :document" + 
 	        "    and ta.dt_settlement >= :dtSettlement" +
 	        "    and ta.dt_effective_settlement is null", nativeQuery = true)
